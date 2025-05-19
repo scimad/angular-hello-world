@@ -1,9 +1,22 @@
 header{
     display: flex;
-    padding-inline: 16px ;
+    padding-inline: 0px ;
     padding-block: 8px;
     background-color: #333;
     color: white;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
+
+    nav{
+        display: flex;
+        justify-items: space-between;
+        align-items: center;
+    }
+
+    ul{
+        list-style: none;
+    }
+    
 }
+
