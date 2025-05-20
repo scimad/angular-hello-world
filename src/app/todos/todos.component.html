@@ -29,10 +29,7 @@
         <p>Loading... (2)</p>
     }
     @for (item of todoItemsfromAPI(); track $index) {
-    <li class="todos__item">
-        <input id="todo-{{item.id}}" type="checkbox" [value]= "item.completed" />
-        <label for="todo-{{item.id}}">{{$index + 1}} - {{item.title}}</label>
-    </li>
+        <app-todo-item [todoItem]="item" [todoItemId]="$index" />
     }
 </ul>
 

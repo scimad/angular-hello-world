@@ -1,0 +1,6 @@
+
+<li class="todos__item">
+    <p>Item {{todoItemId() + 1}}</p>
+    <input id="todo-{{todoItem().id}}" type="checkbox" [value]= "todoItem().completed" />
+    <label for="todo-{{todoItem().id}}">{{todoItem().title}}</label>
+</li>
