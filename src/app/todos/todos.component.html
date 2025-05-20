@@ -7,3 +7,26 @@
 <li>somehing new.</li>
 <li>something different.</li>
 </ul>
+
+<ul><h1>Using service directly</h1>
+    <!-- <li>{{todosService.todoItems[0].title}}</li>
+    <li>{{todosService.todoItems[1].title}}</li> -->
+</ul>
+
+<ul><h1>Using Signal</h1>
+<!-- <li>{{todoItems()[0].title}}</li>
+<li>{{todoItems()[1].title}}</li> -->
+</ul>
+
+<ul><h1>Using Signal + Loop</h1>
+@for (item of todoItems(); track $index) {
+<li>{{$index + 1}} - {{item.title}}</li>
+}
+</ul>
+
+<ul><h1>Using Signal + API + Loop</h1>
+@for (item of todofromAPI(); track $index) {
+<li>{{$index + 1}} - {{item.title}}</li>
+}
+</ul>
+
