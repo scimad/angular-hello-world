@@ -4,10 +4,12 @@ import { ToDo } from '../models/todo.type';
 import { catchError, throwError } from 'rxjs';
 import { NgIf } from '@angular/common';
 import { TodoItemComponent } from '../components/todo-item/todo-item.component';
+import { FormsModule } from '@angular/forms';
+import { FilterTodosPipe } from '../pipes/filter-todos.pipe';
 
 @Component({
   selector: 'app-todos',
-  imports: [NgIf, TodoItemComponent],
+  imports: [NgIf, TodoItemComponent, FormsModule, FilterTodosPipe],
   templateUrl: './todos.component.html',
   styleUrl: './todos.component.scss',
 })
@@ -15,6 +17,7 @@ export class TodosComponent implements OnInit {
   todosService = inject(ToDosService);
   todoItems = signal<Array<ToDo>>([]);
   todoItemsfromAPI = signal<Array<ToDo>>([]);
+  searchTerm = signal('');
 
   ngOnInit(): void {
     this.todoItems.set(this.todosService.todoItems)
@@ -31,21 +34,13 @@ export class TodosComponent implements OnInit {
       });
   }
 
-updateToDoItem(todoItem: ToDo) {
-  this.todoItemsfromAPI.update((todos) => {
-    return todos.map(todo => 
-      todo.id === todoItem.id 
-        ? { ...todo, completed: !todo.completed } 
-        : todo
-    );
-  });
+  updateToDoItem(todoItem: ToDo) {
+    this.todoItemsfromAPI.update((todos) => {
+      return todos.map(todo => 
+        todo.id === todoItem.id 
+          ? { ...todo, completed: !todo.completed } 
+          : todo
+      );
+    });
+  }
 }
-
-}
-
-
-// (todos)=>{
-//       return todos.map(todo =>{
-//        
-//       })
-//     }

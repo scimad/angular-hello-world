@@ -7,29 +7,37 @@
 <li>something different.</li>
 </ul>
 
-<ul><h1>Using service directly</h1>
+<h1>Using service directly</h1>
+<ul>
     <li>{{todosService.todoItems[0].title}}</li>
     <li>{{todosService.todoItems[1].title}}</li>
 </ul>
 
-<ul><h1>Using Signal</h1>
+<h1>Using Signal</h1>
+<ul>
 <li>{{todoItems()[0].title}}</li>
 <li>{{todoItems()[1].title}}</li>
 </ul>
 
-<ul><h1>Using Signal + Loop</h1>
+<h1>Using Signal + Loop</h1>
+<ul>
 @for (item of todoItems(); track $index) {
 <li>{{$index + 1}} - {{item.title}}</li>
 }
 </ul>
 
-<ul class = "todos"><h1>Using Signal + API + Loop</h1>
-    <p *ngIf="!todoItemsfromAPI().length">Loading...</p>
-    @if (!todoItemsfromAPI().length) {
-        <p>Loading... (2)</p>
-    }
-    @for (item of todoItemsfromAPI(); track $index) {
+<h1>Using Signal + API + Loop</h1>
+<p *ngIf="!todoItemsfromAPI().length">Loading...</p>
+@if (!todoItemsfromAPI().length) {
+    <p>Loading... (2)</p>
+}
+
+<form>
+    <label>Filter ToDos </label>
+    <input name="searchTerm" [(ngModel)] = "searchTerm" placeholder="Search todos..."/>
+</form>
+<ul class = "todos">
+    @for (item of todoItemsfromAPI() | filterTodos : searchTerm() ; track $index) {
         <app-todo-item (todoToggledOut)="updateToDoItem($event)" [todoItem]="item" [todoItemId]="$index" />
     }
 </ul>
-
