@@ -29,7 +29,7 @@
         <p>Loading... (2)</p>
     }
     @for (item of todoItemsfromAPI(); track $index) {
-        <app-todo-item [todoItem]="item" [todoItemId]="$index" />
+        <app-todo-item (todoToggledOut)="updateToDoItem($event)" [todoItem]="item" [todoItemId]="$index" />
     }
 </ul>
 

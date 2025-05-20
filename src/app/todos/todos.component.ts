@@ -31,4 +31,21 @@ export class TodosComponent implements OnInit {
       });
   }
 
+updateToDoItem(todoItem: ToDo) {
+  this.todoItemsfromAPI.update((todos) => {
+    return todos.map(todo => 
+      todo.id === todoItem.id 
+        ? { ...todo, completed: !todo.completed } 
+        : todo
+    );
+  });
 }
+
+}
+
+
+// (todos)=>{
+//       return todos.map(todo =>{
+//        
+//       })
+//     }
