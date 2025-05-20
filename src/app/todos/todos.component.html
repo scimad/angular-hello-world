@@ -24,9 +24,12 @@
 }
 </ul>
 
-<ul><h1>Using Signal + API + Loop</h1>
+<ul class = "todos"><h1>Using Signal + API + Loop</h1>
 @for (item of todofromAPI(); track $index) {
-<li>{{$index + 1}} - {{item.title}}</li>
+<li class="todos__item">
+    <input id="todo-{{item.id}}" type="checkbox" [value]= "item.completed" />
+    <label for="todo-{{item.id}}">{{$index + 1}} - {{item.title}}</label>
+</li>
 }
 </ul>
 
